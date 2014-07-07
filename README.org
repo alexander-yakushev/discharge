@@ -4,7 +4,7 @@
   generator. It started as a fork of [[https://github.com/nakkaya/static][Static]], but eventually the list of changes
   grew too large to call it a fork.
 
-  Here's the list of reasons why you would you suddenly want to use Discharge:
+  Here's the list of reasons why you would suddenly want to use Discharge:
 
   - heavily relies on .org files for posts and site pages. Nevertheless other
     formats (Markdown, HTML and Clojure Hiccup) are supported;
@@ -13,6 +13,12 @@
   - allows to embed Hiccup forms into org-mode files;
   - maintains file cache and in watch mode rapidly rebuilds only the pages that
     were changed.
+
+** Examples
+
+   There are currently two websites built with Discharge:
+   - [[http://www.bytopia.org][bytopia.org]] ([[https://github.com/alexander-yakushev/bytopia.org][source]])
+   - [[http://clojure-android.info/][clojure-android.info]] ([[https://github.com/alexander-yakushev/clojure-android.info][source]])
 
 ** Dependencies
 
@@ -23,8 +29,8 @@
 
 ** Installation
 
-   Build Discharge using =lein uberjar=. You'll get =discharge-app.jar= which
-   you can use.
+   Build Discharge using =lein uberjar=. You'll get =discharge-app.jar= file
+   which you should put into some easy to reach place.
 
 ** Usage
 
@@ -46,6 +52,10 @@ java -jar /path/to/discharge-app.jar --watch
 #+BEGIN_SRC sh
 java -jar /path/to/discharge-app.jar --help
 #+END_SRC
+
+** Acknowledgments
+
+   I thank [[https://github.com/nakkaya][Nurullah Akkaya]] for creating Static which Discharge is based on.
 
 ** License
 
