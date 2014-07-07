@@ -1,0 +1,54 @@
+* Discharge
+
+  Discharge is a not-again-why-the-hell-you-need-another-one static website/blog
+  generator. It started as a fork of [[https://github.com/nakkaya/static][Static]], but eventually the list of changes
+  grew too large to call it a fork.
+
+  Here's the list of reasons why you would you suddenly want to use Discharge:
+
+  - heavily relies on .org files for posts and site pages. Nevertheless other
+    formats (Markdown, HTML and Clojure Hiccup) are supported;
+  - supports page cuts (readmore's) for .org files;
+  - uses Hiccup for page templates;
+  - allows to embed Hiccup forms into org-mode files;
+  - maintains file cache and in watch mode rapidly rebuilds only the pages that
+    were changed.
+
+** Dependencies
+
+   Things you need to have installed:
+   - [[http://leiningen.org/][Leiningen]] (to build Discharge jar)
+   - [[https://www.gnu.org/software/emacs/][Emacs]] (to generate HTML pages form .org files)
+   - [[http://pygments.org/][Pygments]] (for highlighting code blocks)
+
+** Installation
+
+   Build Discharge using =lein uberjar=. You'll get =discharge-app.jar= which
+   you can use.
+
+** Usage
+
+   Build the site:
+
+#+BEGIN_SRC sh
+java -jar /path/to/discharge-app.jar --build
+#+END_SRC
+
+   Watch mode: run Jetty server to browse the site locally and automatically
+   rebuild it on changes:
+
+#+BEGIN_SRC sh
+java -jar /path/to/discharge-app.jar --watch
+#+END_SRC
+
+   To view all supported options:
+
+#+BEGIN_SRC sh
+java -jar /path/to/discharge-app.jar --help
+#+END_SRC
+
+** License
+
+   Copyright © 2010, 2011, 2012 Nurullah Akkaya, 2013-2014 Alexander Yakushev.
+   Distributed under the Eclipse Public License, the same as Clojure. See the
+   file [[https://github.com/alexander-yakushev/discharge/blob/master/COPYING][COPYING]].
