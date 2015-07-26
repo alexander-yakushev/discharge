@@ -91,7 +91,7 @@
        "(progn "
        (apply str (:emacs-eval (config)))
        " (find-file \"" (.getAbsolutePath file) "\") "
-       " (princ (org-no-properties (org-export-as-html nil nil (quote string) t nil))))")))
+       " (princ (org-no-properties (org-export-as 'html nil nil t nil))))")))
 
 (defn read-org-file [f]
   (when-not (:emacs (config))
@@ -124,7 +124,7 @@
                         (interpose "-")
                         (apply str))
                    ".org")
-        f (jio/file (:in-dir (config)) "posts" fname)]
+        f (jio/file (:blog-dir (config)) fname)]
     (FileUtils/writeStringToFile
      f
      (format org-file-template (s/join (interpose " " title)))

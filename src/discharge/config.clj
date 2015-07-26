@@ -6,6 +6,10 @@
 
 (def config-file (atom nil))
 
+;; Useful for debugging
+;; (reset! config-file (jio/file "/home/unlogic/work/projects/web/bytopia.org/config.clj"))
+;; (reset! config-file (jio/file "/home/unlogic/work/projects/web/clojure-android.info/config.clj"))
+
 (def ^:private
   defaults {:in-dir "resources/"
             :out-dir "html/"
@@ -35,12 +39,21 @@
 
         :else config))
 
+(defn middleware [config]
+  (let [suffix (:blog-suffix config)]
+    (cond-> config
+      suffix (assoc :blog-url (str (:site-url config) "/" suffix "/"))
+      true (assoc :blog-dir (if suffix
+                              (jio/file (:in-dir config) "posts" suffix)
+                              (jio/file (:in-dir config) "posts"))))))
+
 (defn config []
   (or (cache/lookup @config-file)
       (let [config (-> (slurp @config-file)
                        read-string
                        (->> (apply hash-map)
                             (merge defaults))
+                       middleware
                        (assoc :root-dir (.getParent @config-file))
                        (absolutize-paths (.getParent @config-file)))]
         (cache/add @config-file config)
@@ -48,4 +61,3 @@
 
 (defn set-config-file! [f]
   (reset! config-file f))
-
