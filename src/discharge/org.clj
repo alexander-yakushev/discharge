@@ -112,6 +112,7 @@
   "#+title: %s
 #+tags:
 #+OPTIONS: toc:nil author:nil
+#+post-type: news
 ")
 
 (defn new-post

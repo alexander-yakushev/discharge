@@ -7,8 +7,8 @@
 (def config-file (atom nil))
 
 ;; Useful for debugging
-;; (reset! config-file (jio/file "/home/unlogic/work/projects/web/bytopia.org/config.clj"))
-;; (reset! config-file (jio/file "/home/unlogic/work/projects/web/clojure-android.info/config.clj"))
+;; (reset! config-file (jio/file "/home/unlogic/projects/web/bytopia.org/config.clj"))
+;; (reset! config-file (jio/file "/home/unlogic/projects/web/clojure-android.info/config.clj"))
 
 (def ^:private
   defaults {:in-dir "resources/"
@@ -23,7 +23,7 @@
 (defn- absolutize-paths [config root-dir]
   (reduce (fn [conf p-key]
             (update-in conf [p-key]
-                       #(str (jio/file root-dir %))))
+                       #(str (jio/file root-dir %) "/")))
           config
           [:in-dir :out-dir]))
 

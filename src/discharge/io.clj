@@ -96,7 +96,8 @@
    (FileUtils/writeStringToFile f content (:encoding (config)))))
 
 (defn deploy-rsync [rsync out-dir host user deploy-dir post-deploy-cmd]
-  (let [cmd [rsync "-avz" "--delete" "--checksum" "-e" "ssh"
-             out-dir (str user "@" host ":" deploy-dir)]]
+  (let [cmd (conj (vec rsync) out-dir (str user "@" host ":" deploy-dir))]
+    (println "Running:" cmd)
     (log/info (:out (apply sh cmd)))
-    (log/info (:out (apply sh post-deploy-cmd)))))
+    (when post-deploy-cmd
+      (log/info (:out (apply sh post-deploy-cmd))))))
